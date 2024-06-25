@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="./libs/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./libs/css/font-awesome.css" />
+    <link rel="stylesheet" href="./libs/css/style.css" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <title>Albums Directory</title>
+  </head>
+  <body>
+    <section>
+
+        <div class="tab-content bg-white">
+
+            
+               
+              
+              <table class="table table-hover">
+                
+                <tbody id="albumTableBody">
+                    <tr>
+                        <td>Bollocks</td>
+                    </tr>
+                
+                
+        
+                  
+                  
+                </tbody>
+        
+              </table>
+        </div>
+              
+            
+        
+
+
+    </section>
+     <div
+      id="editAlbumModal"
+      class="modal fade"
+      tabindex="-1"
+      data-bs-backdrop="false"
+      data-bs-keyboard="false"
+      aria-labelledby="editAlbumLabel"
+      aria-hidden="true"
+    >
+      <!--   the last two classes centre the modal and, if the content is too long, ensures  -->
+      <!--   that the header and footer are always on display by making the body scroll -->
+
+      <div
+        class="modal-dialog modal-sm modal-dialog-centered modal-dialog-scrollable"
+      >
+        <div class="modal-content shadow">
+          <div class="modal-header bg-primary bg-gradient text-white">
+            <h5 class="modal-title">Edit Album</h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+
+          <div class="modal-body">
+            <form id="editAlbumForm">
+              <input type="text" id="editAlbumID" />
+
+              <div class="form-floating mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="editAlbumName"
+                  placeholder="First name"
+                  required
+                />
+                <label for="editAlbumName">Album name</label>
+              </div>
+
+              <div class="form-floating mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="editArtistName"
+                  placeholder="Artist name"
+                  required
+                />
+                <label for="editArtistName">Last name</label>
+              </div>
+
+              <div class="form-floating mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="editReleaseYear"
+                  placeholder="Release Year"
+                  required
+                />
+                <label for="editReleaseYear">Year of Release</label>
+              </div>
+
+             
+
+              <div class="form-floating">
+                <select
+                  class="form-select"
+                  id="editRanking">
+                
+                
+		             <option value=1>*</option>
+                  <option value=2>**</option>
+                  <option value=3>***</option>
+                  <option value=4>****</option>
+                  <option value=5>****</option>
+		              </select>
+                <label for="editRanking">Ranking</label>
+              </div>
+            </form>
+            <div id="editAlbumStatus"></div>
+          </div>
+
+          <div class="modal-footer">
+            <button
+              type="submit"
+              id="btnAlbumEdit"
+              form="editAlbumForm"
+              class="btn btn-outline-primary btn-sm myBtn"
+            >
+              SAVE
+            </button>
+            <button
+              type="button"
+              id="btnCloseAlbumEdit"
+              class="btn btn-outline-primary btn-sm myBtn"
+              data-bs-dismiss="modal"
+            >
+              CANCEL
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="./libs/js/jquery-3.7.1.min.js"></script>
+  
+    <script type="text/javascript" src="./libs/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="./libs/js/script.js"></script>
+  </body>
