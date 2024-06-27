@@ -19,11 +19,39 @@ $('#deleteAlbumForm').on('submit', function (e) {
 
 
 $('#addBtn').click(function () {
-  window.alert("bollocks");
+ 
   
   $('#newAlbumModal').modal('show');
 
 
+});
+
+
+$("#selectAlbum").change(function () {
+ 
+      $("#selectArtist").val('All');    
+    getAlbumFilter();  
+      
+  
+})
+
+$("#selectArtist").change(function () {
+ 
+  $("#selectAlbum").val('All');    
+getArtistFilter();  
+  
+
+})
+
+$('#refreshBtn').click(function () {
+      
+    $('#albumTableBody tr').remove();
+    getAllData();
+ 
+    
+ 
+
+  
 });
 
 //Get all grid data
@@ -251,3 +279,143 @@ function createAlbumTable(data) {
   
   });
   
+  //search modal pre load
+
+  $('#searchModal').on('show.bs.modal', function (e) {
+  
+    $.ajax({
+      url: './libs/php/getAllAlbums.php',
+      type: 'POST',
+      dataType: 'json',
+  
+      success: function (result) {
+        var resultCode = result.status.code;
+  
+        if (resultCode == 200) {
+         
+          $('#selectAlbum').append(
+            $('<option>', {
+              value: "All",
+              text: "All",
+            })
+          );
+        
+          for (x = 0; x < result.data.length; x++) {
+            $('#selectAlbum').append(
+              $('<option>', {
+                text: result.data[x].albumName,
+                value: result.data[x].albumName
+               
+              })
+            );
+          }
+          $('#selectAlbum').val('All');
+        } else {
+          $('#searchModal .modal-title').replaceWith('Error retrieving data');
+        }
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        $('#searchModal .modal-title').replaceWith('Error retrieving data');
+      },
+    });
+    $.ajax({
+      url: './libs/php/getAllArtists.php',
+      type: 'POST',
+      dataType: 'json',
+  
+      success: function (result) {
+        var resultCode = result.status.code;
+        
+        if (resultCode == 200) {
+          
+         $('#selectArtist').empty();
+          $('#selectArtist').append(
+            $('<option>', {
+              value: 'All',
+              text: 'All',
+            })
+          );
+          for (x = 0; x < result.data.length; x++) {
+            $('#selectArtist').append(
+              $('<option>', {
+                text: result.data[x].artistName,
+                value: result.data[x].artistName,
+               
+              })
+            );
+          }
+          $('#selecArtist').val(0);
+        } else {
+          $('#searchModal .modal-title').replaceWith('Error retrieving data');
+        }
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        $('#searchModal .modal-title').replaceWith('Error retrieving data');
+      },
+    });
+  });
+  // search for albums
+
+  function getAlbumFilter() {
+
+    let albumName = $('#selectAlbum').val();
+   
+    $.ajax({
+      url: './libs/php/filterByAlbum.php',
+      type: 'POST',
+      dataType: 'json',
+      data: {
+        album: albumName,
+      },
+  
+      success: function (result) {
+        var resultCode = result.status.code;
+  
+        if (resultCode == 200) {
+        
+          createAlbumTable(result.data);
+          $('#searchModal').modal('hide')
+         
+        } else {
+          $('#searchModal .modal-title').replaceWith('Error retrieving data');
+        }
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        $('#searchModal .modal-title').replaceWith('Error retrieving data');
+      },
+    });
+  }
+  
+  // search for artists
+
+  function getArtistFilter() {
+
+    let artistName = $('#selectArtist').val();
+   
+    $.ajax({
+      url: './libs/php/filterByArtist.php',
+      type: 'POST',
+      dataType: 'json',
+      data: {
+        artist: artistName,
+      },
+  
+      success: function (result) {
+        var resultCode = result.status.code;
+  
+        if (resultCode == 200) {
+        
+          createAlbumTable(result.data);
+          $('#searchModal').modal('hide');
+         
+        } else {
+          $('#searchModal .modal-title').replaceWith('Error retrieving data');
+        }
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        $('#searchModal .modal-title').replaceWith('Error retrieving data');
+      },
+    });
+  }
+  
+ 
