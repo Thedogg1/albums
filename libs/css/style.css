@@ -31,9 +31,9 @@ tr {
   color: red;
 }
 
-@media only screen and(max-width: 480px){
-  body {
-    background-color: green;
+@media screen and (max-width:600px){
+  thead {
+    display:none;
   }
 
 }
