@@ -2,7 +2,7 @@
 
 	
 
-	// remove next two lines for production
+	
 	
 	ini_set('display_errors', 'On');
 	error_reporting(E_ALL);
@@ -11,7 +11,7 @@
 
 	include("config.php");
 
-//	header('Content-Type: application/json; charset=UTF-8');
+
 
 	$conn = new mysqli($cd_host, $cd_user, $cd_password, $cd_dbname, $cd_port, $cd_socket);
 
@@ -31,7 +31,7 @@
 
 	}	
 
-	// SQL does not accept parameters and so is not prepared
+	
 
 	$query = 'SELECT albumID, albumName, artistName, ranking, year_release from albums order by albumName';
 

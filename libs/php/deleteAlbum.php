@@ -58,7 +58,7 @@
 	$output['status']['name'] = "ok";
 	$output['status']['description'] = "This department has been deleted";
 	$output['status']['returnedIn'] = (microtime(true) - $executionStartTime) / 1000 . " ms";
-	$output['data'] = "The record has been deleted from the personnel table";
+	$output['data'] = "The record has been deleted from the Albums table";
 
 	$albumName=$_POST['albumName'];
 	

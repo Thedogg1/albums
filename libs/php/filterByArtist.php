@@ -32,7 +32,7 @@
 	}	
 
 	
-    $query= $conn->prepare('SELECT albumName, artistName, year_release, ranking from ALBUMS where artistName=? ORDER BY albumName');
+    $query= $conn->prepare('SELECT albumName, artistName, year_release, ranking from albums where artistName=? ORDER BY albumName');
     $query->bind_param("s", $_POST['artist']);
     $query->execute();
     $result = $query->get_result();

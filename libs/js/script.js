@@ -19,8 +19,17 @@ $('#deleteAlbumForm').on('submit', function (e) {
 
 
 $('#addBtn').click(function () {
- 
-  
+  if (document.getElementById("newReleaseYear").length==0){
+  for (let x = 2024; x > 1919; x--){
+    $('#newReleaseYear').append(
+      $('<option>', {
+        value: x,
+        text: x,
+      })
+    );
+   }
+  }
+  $('#newAlbumStatus').html('');
   $('#newAlbumModal').modal('show');
 
 
@@ -67,7 +76,7 @@ function getAllData() {
         createAlbumTable(result.data);
       },
       error: function (jqXHR, textStatus, errorThrown) {
-        $('#editPersonnelModal .modal-title').replaceWith(
+        $('#editAlbumModal .modal-title').replaceWith(
           'Error retrieving data'
         );
       },
@@ -126,7 +135,20 @@ function createAlbumTable(data) {
         var resultCode = result.status.code;
       
         if (resultCode == 200) {
-         
+         //populate select box
+          if (document.getElementById('editReleaseYear').length==0){
+         for (let x = 2024; x > 1919; x--){
+          $('#editReleaseYear').append(
+            $('<option>', {
+              value: x,
+              text: x,
+            })
+          );
+         }
+        }
+
+         //remove status message
+         $('#editAlbumStatus').html('');
   
           $('#editAlbumID').val(result.data[0].albumID);
   
@@ -172,6 +194,8 @@ function createAlbumTable(data) {
       success: function (result) {
         $('#editAlbumStatus').html(result.data);
         $('#editAlbumStatus').addClass('databaseStatus');
+        getAllData();
+
        
        
       },
@@ -202,6 +226,7 @@ function createAlbumTable(data) {
         $('#newAlbumStatus').html(result.data);
         $('#newAlbumStatus').addClass('databaseStatus');
         setTimeout(function() {$('#newAlbumModal').modal('hide');}, 3000);
+        getAllData();
       },
       error: function (jqXHR, textStatus, errorThrown) {
         $('#newAlbumModal .modal-title').replaceWith('Error retrieving data');
@@ -226,6 +251,7 @@ function createAlbumTable(data) {
         $('#deleteAlbumStatus').addClass('databaseStatus');
   
         setTimeout(function() {$('#deleteAlbumModal').modal('hide');}, 3000);
+        getAllData();
       },
       error: function (jqXHR, textStatus, errorThrown) {
         $('#deleteAlbumModal .modal-title').replaceWith('Error retrieving data');

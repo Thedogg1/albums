@@ -61,7 +61,7 @@
 	$output['status']['name'] = "ok";
 	$output['status']['description'] = "Record added succesfully";
 	$output['status']['returnedIn'] = (microtime(true) - $executionStartTime) / 1000 . " ms";
-	$output['data'] = "A new record has been added to the personnel table";
+	$output['data'] = "A new record has been added to the Albums table";
 	
 	mysqli_close($conn);
 
