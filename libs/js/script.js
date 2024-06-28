@@ -112,7 +112,7 @@ function createAlbumTable(data) {
       '>' +
       "<i class='fa-solid fa-trash fa-fw'></i></button></td></tr>";
       
-      rows += `<tr><td class='align-middle text-nowrap'>${item.albumName}</td><td class='align-middle text-nowrap d-none d-md-table-cell'>${item.artistName}</td> <td class='align-middle text-nowrap d-none d-md-table-cell'>${item.year_release}</td><td class= 'align-middle text-nowrap d-none d-md-table-cell'>${item.ranking}</td>`+value;  
+      rows += `<tr><td class='align-middle text-nowrap'>${item.albumName}</td><td class='align-middle text-nowrap d-none d-md-table-cell'>${item.artistName}</td> <td class='align-middle text-nowrap d-none d-md-table-cell'>${item.year_release}</td><td class= 'align-middle text-nowrap d-none d-sm-table-cell'>${item.ranking}</td>`+value;  
       
     });
     
